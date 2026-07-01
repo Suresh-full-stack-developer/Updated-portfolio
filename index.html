@@ -24,6 +24,14 @@
   --card-bg: rgba(255,255,255,0.07);
   --text: #e5e7eb;
   --muted: #cbd5f5;
+
+  /* Added missing variables used by the Certifications section */
+  --bg-alt: rgba(255,255,255,0.02);
+  --card: rgba(255,255,255,0.03);
+  --line: rgba(255,255,255,0.06);
+  --shadow: rgba(56,189,248,0.15);
+  --text-soft: rgba(229,231,235,0.9);
+  --font-display: 'Segoe UI', sans-serif;
 }
 
 html { overflow-x: hidden; }
@@ -122,10 +130,10 @@ nav {
 /* ===== HERO ===== */
 .hero {
   min-height: 100vh;
-  display: grid; grid-template-columns: 1fr 1fr;
+  display: grid; grid-template-columns: 0.75fr 1.25fr;
   align-items: center;
   padding: clamp(100px,15vh,140px) 6% clamp(60px,8vh,80px);
-  gap: 40px;
+  gap: 10px;
 }
 
 .hero-text h1 {
@@ -314,6 +322,8 @@ nav {
 .edu-content p { font-size: clamp(0.82rem,1.8vw,0.98rem); color: var(--text); line-height: 1.6; }
 
 /* ===== OTHER SKILLS ===== */
+#technical-skills { background: rgba(56,189,248,0.03); }
+
 #other-skills { background: rgba(255,255,255,0.02); }
 
 .skills-grid {
@@ -341,18 +351,46 @@ nav {
 .skill-badge svg { width: clamp(28px,6vw,42px); height: clamp(28px,6vw,42px); }
 .skill-badge span { font-size: clamp(0.78rem,1.8vw,0.92rem); color: var(--muted); font-weight: 600; }
 
+.proficiency-level {
+  font-size: 0.65rem; 
+  color: #fff;
+  background: rgba(56,189,248,0.6);
+  padding: 2px 8px;
+  border-radius: 12px;
+  margin-top: 4px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.proficiency-level.basic { background: rgba(76,175,80,0.6); }
+.proficiency-level.intermediate { background: rgba(255,193,7,0.6); }
+.proficiency-level.advanced { background: rgba(244,67,54,0.6); }
+
 .fa-git-alt { color: #f05032; }
 .fa-github  { color: #ffffff; }
 .fa-figma   { color: #f24e1e; }
 
 /* ===== PROJECTS ===== */
-.works { max-width: 700px; width: 100%; }
+.works {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+  justify-content: center;
+  width: 100%;
+}
 
 .work-card {
-  display: flex; gap: 18px;
-  background: var(--card-bg); border: 1px solid rgba(56,189,248,0.1);
-  border-radius: 14px; padding: 15px; margin-bottom: 22px;
-  align-items: center; text-align: left; transition: 0.3s;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 260px;
+  max-width: 340px;
+  background: var(--card-bg);
+  border: 1px solid rgba(56,189,248,0.1);
+  border-radius: 14px;
+  overflow: hidden;
+  text-align: left;
+  transition: 0.3s;
 }
 
 .work-card:hover {
@@ -362,24 +400,35 @@ nav {
 }
 
 .work-image img {
-  width: clamp(100px,20vw,210px);
-  height: clamp(80px,15vw,155px);
-  object-fit: cover; border-radius: 10px; flex-shrink: 0;
-  box-shadow: 0 0 12px rgba(56,189,248,0.35);
+  width: 100%;
+  height: 175px;
+  object-fit: cover;
+  display: block;
+  flex-shrink: 0;
 }
 
-.work-content { flex: 1; min-width: 0; }
+.work-content {
+  flex: 1;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
 .work-content h3 { font-size: clamp(0.92rem,2.3vw,1.2rem); color: var(--accent); margin-bottom: 8px; }
-.work-content p  { font-size: clamp(0.82rem,1.7vw,0.96rem); color: var(--text); line-height: 1.6; margin-bottom: 12px; }
+.work-content p  { font-size: clamp(0.82rem,1.7vw,0.96rem); color: var(--text); line-height: 1.6; margin-bottom: 12px; flex: 1; }
 
 .btn-link {
-  display: inline-block; padding: 7px 18px;
-  background: var(--accent); color: #000;
-  font-weight: 700; font-size: 0.84rem;
-  text-decoration: none; border-radius: 20px; transition: 0.3s;
+  display: inline-block; padding: 0;
+  background: none; color: var(--accent);
+  font-weight: 700; font-size: 0.82rem;
+  text-decoration: none; border-radius: 0; transition: 0.3s;
 }
 
-.btn-link:hover { background: var(--accent-dark); }
+.btn-link:hover { color: var(--accent-dark); }
+
+/* Certifications — uses .works and .work-card same as Projects */
+.certifications { background: var(--bg-alt); }
+
 
 /* ===== CONTACT ===== */
 .contact-form {
@@ -413,12 +462,77 @@ nav {
 
 /* ===== FOOTER ===== */
 footer {
-  width: 100%; padding: 22px 5%;
-  text-align: center; background: rgba(15,23,42,0.65);
-  font-size: 0.9rem; color: var(--muted);
+  background: rgba(10,18,36,0.95);
+  border-top: 1px solid rgba(56,189,248,0.15);
 }
 
-footer span { color: var(--accent); font-weight: 700; }
+.footer-inner {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  gap: 48px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 56px 5% 40px;
+}
+
+.footer-logo {
+  font-size: 1.4rem; font-weight: 800;
+  color: var(--accent); letter-spacing: 1px; margin-bottom: 14px;
+}
+
+.footer-about {
+  font-size: 0.9rem; color: var(--muted);
+  line-height: 1.7; margin-bottom: 20px;
+}
+
+.footer-socials { display: flex; gap: 14px; }
+
+.footer-socials a {
+  color: var(--muted); transition: color 0.2s, transform 0.2s; display: inline-flex;
+}
+.footer-socials a:hover { color: var(--accent); transform: translateY(-2px); }
+
+.footer-heading {
+  font-size: 0.9rem; font-weight: 700; color: var(--accent);
+  text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 18px;
+}
+
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+
+.footer-links li a {
+  color: var(--muted); font-size: 0.9rem; text-decoration: none;
+  transition: color 0.2s, padding-left 0.2s; display: inline-block;
+}
+.footer-links li a:hover { color: var(--accent); padding-left: 6px; }
+
+.footer-contact { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+
+.footer-contact li {
+  display: flex; align-items: flex-start; gap: 10px;
+  color: var(--muted); font-size: 0.88rem; line-height: 1.5;
+}
+.footer-contact li svg { flex-shrink: 0; margin-top: 2px; color: var(--accent); }
+.footer-contact a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+.footer-contact a:hover { color: var(--accent); }
+
+.footer-bottom {
+  border-top: 1px solid rgba(56,189,248,0.1);
+  max-width: 1100px; margin: 0 auto;
+  padding: 18px 5%;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 8px;
+  font-size: 0.82rem; color: var(--muted);
+}
+.footer-bottom span { color: var(--accent); font-weight: 700; }
+
+@media (max-width: 780px) {
+  .footer-inner { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .footer-col:first-child { grid-column: 1 / -1; }
+}
+@media (max-width: 500px) {
+  .footer-inner { grid-template-columns: 1fr; gap: 28px; padding: 36px 5% 28px; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+}
 
 /* ============================================
    RESPONSIVE BREAKPOINTS
@@ -462,7 +576,10 @@ footer span { color: var(--accent); font-weight: 700; }
   }
 
   .work-card {
-    flex-direction: column; text-align: center;
+    flex: 1 1 100%;
+    max-width: 100%;
+    flex-direction: column;
+    text-align: center;
   }
 
   .work-image img {
@@ -525,7 +642,7 @@ footer span { color: var(--accent); font-weight: 700; }
   <ul class="nav-links">
     <li><a href="#home">Home</a></li>
     <li><a href="#about">About</a></li>
-    <li><a href="#other-skills">Skills</a></li>
+    <li><a href="#technical-skills">Skills</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -536,20 +653,20 @@ footer span { color: var(--accent); font-weight: 700; }
 
 <!-- Mobile nav -->
 <ul class="mobile-menu" id="mobileMenu">
-  <li><a href="#home"         onclick="closeMenu()">Home</a></li>
-  <li><a href="#about"        onclick="closeMenu()">About</a></li>
-  <li><a href="#other-skills" onclick="closeMenu()">Skills</a></li>
-  <li><a href="#projects"     onclick="closeMenu()">Projects</a></li>
-  <li><a href="#contact"      onclick="closeMenu()">Contact</a></li>
+  <li><a href="#home"               onclick="closeMenu()">Home</a></li>
+  <li><a href="#about"              onclick="closeMenu()">About</a></li>
+  <li><a href="#technical-skills"   onclick="closeMenu()">Skills</a></li>
+  <li><a href="#projects"           onclick="closeMenu()">Projects</a></li>
+  <li><a href="#contact"            onclick="closeMenu()">Contact</a></li>
 </ul>
 
 <!-- ===== HERO ===== -->
 <section class="hero" id="home">
   <div class="hero-text">
     <h1>Hi, I'm <span>Suresh</span></h1>
-    <p class="subtitle">MERN Stack Developer</p>
+    <p class="subtitle">Full Stack Developer</p>
     <a class="resume-btn"
-       href="https://raw.githubusercontent.com/Suresh-full-stack-developer/Updated-portfolio/main/Screenshot%202026-03-05%20120411.pdf"
+       href="Suresh_CV.pdf"
        target="_blank" download>⬇ Download Resume</a>
     <div class="social-icons">
       <!-- GitHub -->
@@ -640,6 +757,31 @@ footer span { color: var(--accent); font-weight: 700; }
           </svg>
         </div>
 
+        <!-- SQL -->
+        <div class="orb-skill" data-name="SQL">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#336791" d="M32 2C15.4 2 2 8.5 2 16c0 4.5 4 8.5 10 11.5v11c0 7.5 13.6 14 20 14s20-6.5 20-14v-11c6-3 10-7 10-11.5C62 8.5 48.6 2 32 2zm0 4c13 0 24 4.5 24 10s-11 10-24 10-24-4.5-24-10 11-10 24-10zm-10 18c2 1 6 2 10 2s8-1 10-2v8c0 4.5-8.5 8-10 8s-10-3.5-10-8v-8zm0 12c2 1 6 2 10 2s8-1 10-2v2c0 4.5-8.5 8-10 8s-10-3.5-10-8v-2z"/>
+          </svg>
+        </div>
+
+        <!-- Spring Boot -->
+        <div class="orb-skill" data-name="Spring Boot">
+          <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="128" cy="128" r="120" fill="none" stroke="#68A063" stroke-width="8"/>
+            <path fill="#68A063" d="M128 20c59.6 0 108 48.4 108 108s-48.4 108-108 108S20 187.6 20 128 68.4 20 128 20m0-8C62.1 12 12 62.1 12 128s50.1 116 116 116 116-50.1 116-116S193.9 12 128 12z"/>
+            <path fill="#68A063" d="M128 30C70.4 30 22 78.4 22 136c0 38.6 24.4 71.4 58.6 85 4.2 1 5.8-2.2 5.8-5 0-2.4-.2-10.4-.2-18.8-21.4 4.8-26.2-10.4-26.2-10.4-3.8-9.8-9.4-12.4-9.4-12.4-7.6-5.4.6-5.2 5.6-5.2h.2c10.8.8 16.4 11.2 16.4 11.2 9.6 16.6 25.2 11.8 31.4 9 1-7 3.8-11.8 6.8-14.6-24-2.8-49.2-12.2-49.2-54 0-11.8 4.2-21.4 11.2-29-1.2-2.8-4.8-14 1.2-28.8 0 0 9.2-3 30.2 11.2 8.8-2.4 18.2-3.6 27.6-3.6s18.8 1.2 27.6 3.6c21-14.2 30-11.2 30-11.2 6 14.8 2.4 26 1.2 28.8 7 7.6 11.2 17.2 11.2 29 0 42-25.2 51.2-49.2 54 3.8 3.4 7.4 10 7.4 20.4v30.4c0 2.8 1.6 6 5.8 5 34.4-13.6 58.8-46.2 58.8-84.8C234 78.4 185.6 30 128 30z"/>
+          </svg>
+        </div>
+
+        <!-- Java -->
+        <div class="orb-skill" data-name="Java">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#EA2D2E" d="M26.1 40.2c-1.4 2.2-3.5 4-6.2 5.3-2.7 1.3-5.7 2-9 2-3.2 0-6.2-.7-8.9-2-2.7-1.3-4.8-3.1-6.2-5.3C-1.3 37 -2 34 -2 30.8c0-3.2.7-6.2 2-8.9 1.4-2.7 3.5-4.8 6.2-6.2 2.7-1.4 5.7-2 9-2 3.2 0 6.2.7 8.9 2 2.7 1.4 4.8 3.5 6.2 6.2 1.4 2.7 2 5.7 2 8.9 0 3.2-.7 6.2-2 8.9z"/>
+            <path fill="#EA2D2E" d="M42.6 20.9c3.9 0 7.6.8 11 2.4 3.4 1.6 6.2 3.9 8.5 6.8 2.3 2.9 3.5 6.2 3.5 9.8 0 3.6-1.2 6.9-3.5 9.8-2.3 2.9-5.1 5.2-8.5 6.8-3.4 1.6-7.1 2.4-11 2.4-3.9 0-7.6-.8-11-2.4-3.4-1.6-6.2-3.9-8.5-6.8-2.3-2.9-3.5-6.2-3.5-9.8 0-3.6 1.2-6.9 3.5-9.8 2.3-2.9 5.1-5.2 8.5-6.8 3.4-1.6 7.1-2.4 11-2.4z"/>
+            <path fill="#5382A1" d="M10 15c-2 0-3.8-.4-5.4-1.1C2.9 13.1 1.5 12.3.4 11.2"/>
+          </svg>
+        </div>
+
         <!-- Database/SQL -->
         <div class="orb-skill" data-name="Database">
           <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
@@ -705,9 +847,121 @@ footer span { color: var(--accent); font-weight: 700; }
   </div>
 </section>
 
+<!-- ===== TECHNICAL SKILLS ===== -->
+<section class="section" id="technical-skills">
+  <h2 class="section-title">Technical Skills</h2>
+  <div class="divider"></div>
+  <div class="skills-grid">
+
+    <!-- HTML -->
+    <div class="skill-badge">
+      <svg viewBox="0 0 452 520" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#e34c26" d="M41 460L0 0h451l-41 460-185 52z"/>
+        <path fill="#ef652a" d="M226 472l149-41 35-394H226z"/>
+        <path fill="#fff" d="M226 208h-75l-5-58h80V94H94l15 171h117zm0 147l-78-21-5-58h-56l10 112 129 36z"/>
+        <path fill="#ebebeb" d="M226 208v56h70l-7 73-63 17v59l116-32 15-173zm0-114v56h137l-4-56z"/>
+      </svg>
+      <span>HTML</span>
+      <div class="proficiency-level advanced">Advanced 90%</div>
+    </div>
+
+    <!-- CSS -->
+    <div class="skill-badge">
+      <svg viewBox="0 0 452 520" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#264de4" d="M41 460L0 0h451l-41 460-185 52z"/>
+        <path fill="#2965f1" d="M226 472l149-41 35-394H226z"/>
+        <path fill="#fff" d="M226 307l-63-17-4-45h-56l8 90 115 32zm7-109h69l-7 77-62 17v58l114-32 16-178H150l5 58z"/>
+        <path fill="#ebebeb" d="M226 151v56H94l-5-56zm-1 100l-1 1 1 27 62-17 3-40h-65z"/>
+      </svg>
+      <span>CSS</span>
+      <div class="proficiency-level advanced">Advanced 90%</div>
+    </div>
+
+    <!-- JavaScript -->
+    <div class="skill-badge">
+      <svg viewBox="0 0 630 630" xmlns="http://www.w3.org/2000/svg">
+        <rect width="630" height="630" fill="#f7df1e"/>
+        <path d="M423 492c10 18 23 30 46 30 19 0 32-10 32-23 0-16-13-22-34-31l-12-5c-34-14-56-32-56-70 0-35 26-61 68-61 29 0 50 10 65 37l-36 23c-8-14-16-19-29-19-13 0-22 9-22 19 0 14 9 19 29 28l12 5c40 17 62 35 62 74 0 42-33 65-77 65-43 0-71-21-85-48zm-177 4c7 13 14 24 30 24 15 0 25-6 25-29V328h46v165c0 48-28 70-69 70-37 0-58-19-69-43z"/>
+      </svg>
+      <span>JavaScript</span>
+      <div class="proficiency-level intermediate">Intermediate 70%</div>
+    </div>
+
+    <!-- React -->
+    <div class="skill-badge">
+      <svg viewBox="-11.5 -10.23 23 20.46" xmlns="http://www.w3.org/2000/svg">
+        <circle fill="#61dafb" r="2.05"/>
+        <g fill="none" stroke="#61dafb" stroke-width="1">
+          <ellipse rx="11" ry="4.2"/>
+          <ellipse rx="11" ry="4.2" transform="rotate(60)"/>
+          <ellipse rx="11" ry="4.2" transform="rotate(120)"/>
+        </g>
+      </svg>
+      <span>React</span>
+      <div class="proficiency-level basic">Basic 50%</div>
+    </div>
+
+    <!-- SQL -->
+    <div class="skill-badge">
+      <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#336791" d="M32 2C15.4 2 2 8.5 2 16c0 4.5 4 8.5 10 11.5v11c0 7.5 13.6 14 20 14s20-6.5 20-14v-11c6-3 10-7 10-11.5C62 8.5 48.6 2 32 2zm0 4c13 0 24 4.5 24 10s-11 10-24 10-24-4.5-24-10 11-10 24-10zm-10 18c2 1 6 2 10 2s8-1 10-2v8c0 4.5-8.5 8-10 8s-10-3.5-10-8v-8zm0 12c2 1 6 2 10 2s8-1 10-2v2c0 4.5-8.5 8-10 8s-10-3.5-10-8v-2z"/>
+      </svg>
+      <span>SQL</span>
+      <div class="proficiency-level basic">Basic 50%</div>
+    </div>
+
+    <!-- Java -->
+    <div class="skill-badge">
+      <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#EA2D2E" d="M26.1 40.2c-1.4 2.2-3.5 4-6.2 5.3-2.7 1.3-5.7 2-9 2-3.2 0-6.2-.7-8.9-2-2.7-1.3-4.8-3.1-6.2-5.3C-1.3 37 -2 34 -2 30.8c0-3.2.7-6.2 2-8.9 1.4-2.7 3.5-4.8 6.2-6.2 2.7-1.4 5.7-2 9-2 3.2 0 6.2.7 8.9 2 2.7 1.4 4.8 3.5 6.2 6.2 1.4 2.7 2 5.7 2 8.9 0 3.2-.7 6.2-2 8.9z"/>
+        <path fill="#EA2D2E" d="M42.6 20.9c3.9 0 7.6.8 11 2.4 3.4 1.6 6.2 3.9 8.5 6.8 2.3 2.9 3.5 6.2 3.5 9.8 0 3.6-1.2 6.9-3.5 9.8-2.3 2.9-5.1 5.2-8.5 6.8-3.4 1.6-7.1 2.4-11 2.4-3.9 0-7.6-.8-11-2.4-3.4-1.6-6.2-3.9-8.5-6.8-2.3-2.9-3.5-6.2-3.5-9.8 0-3.6 1.2-6.9 3.5-9.8 2.3-2.9 5.1-5.2 8.5-6.8 3.4-1.6 7.1-2.4 11-2.4z"/>
+        <path fill="#5382A1" d="M10 15c-2 0-3.8-.4-5.4-1.1C2.9 13.1 1.5 12.3.4 11.2"/>
+      </svg>
+      <span>Java</span>
+      <div class="proficiency-level basic">Basic 50%</div>
+    </div>
+
+    <!-- Node.js -->
+    <div class="skill-badge">
+      <svg viewBox="0 0 256 289" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#83cd29" d="M128 288.6c-3.5 0-6.8-.9-9.8-2.6L66 254.7c-4.6-2.6-2.4-3.5-0.8-4 13.2-4.6 15.9-5.6 30-13.6.7-.4 1.7-.3 2.5.2l40.7 24.2c1 .5 2.3.5 3.2 0l158.6-91.6c1-.6 1.6-1.7 1.6-2.9V103c0-1.2-.6-2.3-1.6-2.9L144.6 8.5c-1-.6-2.3-.6-3.2 0L2.6 100.1C1.6 100.7 1 101.8 1 103v183.2c0 1.2.6 2.3 1.6 2.9l42.3 24.4c23 11.5 37.1-2 37.1-16.3V117c0-1.3 1-2.3 2.3-2.3h10.2c1.3 0 2.3 1 2.3 2.3v180.2c0 31.8-17.3 50-47.5 50-9.3 0-16.6 0-37-10L5 316.2C1.9 314.4 0 311.1 0 307.6V124.4c0-3.5 1.9-6.8 5-8.6L127.2 2.6c3-1.7 7-1.7 10 0L265 115.8c3.1 1.8 5 5 5 8.6v183.2c0 3.5-1.9 6.8-5 8.6L137 428.8c-3 1.7-7 1.7-10 0z"/>
+      </svg>
+      <span>Node.js</span>
+    </div>
+
+    <!-- MongoDB -->
+    <div class="skill-badge">
+      <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#4db33d" d="M16 2C9.4 2 4 7.4 4 14c0 5.3 3.3 9.8 8 11.6V28h2v2h4v-2h2v-2.4C24.7 23.8 28 19.3 28 14c0-6.6-5.4-12-12-12zm1 23.9V27h-2v-1.1C10.9 25 8 20 8 14c0-4.4 3.6-8 8-8s8 3.6 8 8c0 6-2.9 11-7 11.9z"/>
+      </svg>
+      <span>MongoDB</span>
+    </div>
+
+    <!-- Express -->
+    <div class="skill-badge">
+      <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+        <rect width="256" height="256" rx="32" fill="#fff"/>
+        <path fill="#333" d="M228 182h-11l-34-48 34-46h11v-8h-44v8h11l-28 38-28-38h11v-8h-44v8h11l34 46-34 48h-11v8h44v-8h-11l28-40 29 40h-11v8h44z"/>
+      </svg>
+      <span>Express</span>
+    </div>
+
+    <!-- Spring Boot -->
+    <div class="skill-badge">
+      <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="128" cy="128" r="120" fill="none" stroke="#68A063" stroke-width="8"/>
+        <path fill="#68A063" d="M128 20c59.6 0 108 48.4 108 108s-48.4 108-108 108S20 187.6 20 128 68.4 20 128 20m0-8C62.1 12 12 62.1 12 128s50.1 116 116 116 116-50.1 116-116S193.9 12 128 12z"/>
+        <path fill="#68A063" d="M128 30C70.4 30 22 78.4 22 136c0 38.6 24.4 71.4 58.6 85 4.2 1 5.8-2.2 5.8-5 0-2.4-.2-10.4-.2-18.8-21.4 4.8-26.2-10.4-26.2-10.4-3.8-9.8-9.4-12.4-9.4-12.4-7.6-5.4.6-5.2 5.6-5.2h.2c10.8.8 16.4 11.2 16.4 11.2 9.6 16.6 25.2 11.8 31.4 9 1-7 3.8-11.8 6.8-14.6-24-2.8-49.2-12.2-49.2-54 0-11.8 4.2-21.4 11.2-29-1.2-2.8-4.8-14 1.2-28.8 0 0 9.2-3 30.2 11.2 8.8-2.4 18.2-3.6 27.6-3.6s18.8 1.2 27.6 3.6c21-14.2 30-11.2 30-11.2 6 14.8 2.4 26 1.2 28.8 7 7.6 11.2 17.2 11.2 29 0 42-25.2 51.2-49.2 54 3.8 3.4 7.4 10 7.4 20.4v30.4c0 2.8 1.6 6 5.8 5 34.4-13.6 58.8-46.2 58.8-84.8C234 78.4 185.6 30 128 30z"/>
+      </svg>
+      <span>Spring Boot</span>
+    </div>
+
+  </div>
+</section>
+
 <!-- ===== OTHER SKILLS ===== -->
 <section class="section" id="other-skills" style="background:rgba(255,255,255,0.02);">
-  <h2 class="section-title">Other Skills</h2>
+  <h2 class="section-title">Tools</h2>
   <div class="divider"></div>
   <div class="skills-grid">
 
@@ -759,30 +1013,52 @@ footer span { color: var(--accent); font-weight: 700; }
       <span>VS Code</span>
     </div>
 
+    <!-- AWS -->
+    <div class="skill-badge">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <rect width="100" height="100" fill="#FF9900"/>
+        <text x="50" y="68" text-anchor="middle" font-size="48"
+              font-family="Arial,sans-serif" font-weight="bold" fill="white">A</text>
+      </svg>
+      <span>AWS</span>
+    </div>
+
+    <!-- Linux -->
+    <div class="skill-badge">
+      <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="32" cy="32" r="30" fill="none" stroke="#FCC624" stroke-width="2"/>
+        <path fill="#FCC624" d="M32 8c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4zm-8 12c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4zm16 0c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4zm-8 10c-2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4z"/>
+      </svg>
+      <span>Linux</span>
+    </div>
+
+    <!-- npm/yarn -->
+    <div class="skill-badge">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="45" fill="#CB3837"/>
+        <circle cx="50" cy="50" r="35" fill="white"/>
+        <circle cx="50" cy="50" r="25" fill="#CB3837"/>
+        <text x="50" y="58" text-anchor="middle" font-size="20"
+              font-family="Arial,sans-serif" font-weight="bold" fill="white">npm</text>
+      </svg>
+      <span>npm/yarn</span>
+    </div>
+
   </div>
 </section>
 
 <!-- ===== PROJECTS ===== -->
 <section class="section" id="projects">
-  <h2 class="section-title">Featured Projects</h2>
+  <h2 class="section-title"> Projects</h2>
   <div class="divider"></div>
   <div class="works">
 
     <div class="work-card">
-      <div class="work-image"><img src="Student.jpeg" alt="Student Dashboard"></div>
+      <div class="work-image"><img src="Carrer.png" alt="Sympo Registration"></div>
       <div class="work-content">
-        <h3>Student Dashboard App</h3>
-        <p>Android app using Java to track schedule, CGPA, and assignments for students.</p>
-        <a class="btn-link" href="https://github.com/Suresh-full-stack-developer/Student-Dashboard-App" target="_blank">View Code</a>
-      </div>
-    </div>
-
-    <div class="work-card">
-      <div class="work-image"><img src="Portofolio.jpeg" alt="Portfolio Website"></div>
-      <div class="work-content">
-        <h3>Portfolio Website</h3>
-        <p>This very website! Built using HTML, CSS, and animations to showcase my skills and work.</p>
-        <a class="btn-link" href="https://github.com/Suresh-full-stack-developer/Updated-portofolio" target="_blank">View Code</a>
+        <h3>Career Readiness Platform</h3>
+        <p>A platform to help students prepare for career opportunities.  </p>
+        <a class="btn-link" href="https://github.com/Suresh-full-stack-developer/Career-Readiness-Platform">View Code</a>
       </div>
     </div>
 
@@ -796,20 +1072,58 @@ footer span { color: var(--accent); font-weight: 700; }
     </div>
 
     <div class="work-card">
-      <div class="work-image"><img src="Quiz.jpeg" alt="Quiz App"></div>
-      <div class="work-content">
-        <h3>Python Quiz App</h3>
-        <p>Command-line quiz game using Python with questions, score, and feedback.</p>
-        <a class="btn-link" href="https://github.com/Suresh-full-stack-developer/Python-Quiz" target="_blank">View Code</a>
-      </div>
-    </div>
-
-    <div class="work-card">
       <div class="work-image"><img src="ToDo.jpeg" alt="ToDo App"></div>
       <div class="work-content">
         <h3>ToDo App</h3>
         <p>A clean app to manage and track your day-by-day tasks and challenges.</p>
         <a class="btn-link" href="https://github.com/Suresh-full-stack-developer/ToDo-App" target="_blank">View Code</a>
+      </div>
+    </div>
+    <div class="work-card">
+      <div class="work-image"><img src="Portofolio.jpeg" alt="Portfolio"></div>
+      <div class="work-content">
+        <h3>Portfolio Website</h3>
+        <p>My personal portfolio website to showcase my skills and projects.</p>
+        <a class="btn-link" href="https://github.com/Suresh-full-stack-developer/Updated-Portfolio">View Code</a>
+      </div>
+
+  </div>
+</section>
+
+<section id="certifications" class="certifications section">
+  <h2 class="section-title">Certifications</h2>
+  <div class="divider"></div>
+  <div class="works">
+
+    <div class="work-card">
+      <div class="work-image"><img src="certificate.webp" alt="JavaScript Certification From Namasdev" ></div>
+      <div class="work-content">
+        <h3>JavaScript Certification</h3>
+        <p>Namasdev.com — 2026</p>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <div class="work-image"><img src="Intern-certificate.jpg" alt="Java Programming and Andriod development Intern certificate"></div>
+      <div class="work-content">
+        <h3>Java Programming and Andriod development Intern certificate</h3>
+        <p>Bosco Soft Technologies — 2025</p>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <div class="work-image"><img src="Conference Certificate.jpeg" alt="Project Presentation Certificate"></div>
+      <div class="work-content">
+        <h3>Project Presentation Certificate</h3>
+        <p>ICNTSETM'26 — 2026</p>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <div class="work-image"><img src="mern intern.jpg" alt="MERN Stack Intern Certificate" ></div>
+      <div class="work-content">
+        <h3>MERN Stack Intern Certificate</h3>
+        <p>CodTech IT Solutions — 2026</p>
       </div>
     </div>
 
@@ -830,7 +1144,62 @@ footer span { color: var(--accent); font-weight: 700; }
 
 <!-- FOOTER -->
 <footer>
-  <p>© 2026 <span>Suresh Portfolio</span>. All Rights Reserved.</p>
+  <div class="footer-inner">
+
+    <div class="footer-col">
+      <h3 class="footer-logo">Suresh</h3>
+      <p class="footer-about">Java Full Stack Developer based in Tirupattur, India. Open to full-time roles and freelance projects.</p>
+      <div class="footer-socials">
+        <!-- GitHub -->
+        <a href="https://github.com/Suresh-full-stack-developer" target="_blank" rel="noopener" title="GitHub">
+          <svg viewBox="0 0 98 96" xmlns="http://www.w3.org/2000/svg" width="20" height="20"><path fill="currentColor" d="M49 0C21.9 0 0 22 0 49.2c0 21.8 14 40.2 33.4 46.7 2.4.5 3.3-1.1 3.3-2.4v-8.4c-13.5 3-16.3-6.5-16.3-6.5-2.2-5.6-5.4-7.1-5.4-7.1-4.4-3 .3-3 .3-3 4.9.4 7.5 5.1 7.5 5.1 4.4 7.5 11.4 5.3 14.2 4.1.4-3.2 1.7-5.3 3.1-6.5-10.8-1.2-22.1-5.4-22.1-24.1 0-5.3 1.9-9.7 5-13.1-.5-1.2-2.2-6.2.5-12.9 0 0 4.1-1.3 13.4 5 3.9-1.1 8-1.6 12.2-1.6s8.3.5 12.2 1.6c9.3-6.3 13.4-5 13.4-5 2.7 6.7 1 11.7.5 12.9 3.1 3.4 5 7.8 5 13.1 0 18.8-11.4 22.9-22.2 24.1 1.7 1.5 3.3 4.5 3.3 9.1v13.5c0 1.3.9 2.9 3.4 2.4C84 89.4 98 71 98 49.2 98 22 76.1 0 49 0z"/></svg>
+        </a>
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/in/suresh-p-full-stack-developer" target="_blank" rel="noopener" title="LinkedIn">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="20" height="20"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.59 0 4.26 2.37 4.26 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45C23.21 24 24 23.23 24 22.28V1.72C24 .77 23.21 0 22.22 0z"/></svg>
+        </a>
+        <!-- Email -->
+        <a href="mailto:sureshsureshpp100@gmail.com" title="Email">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="20" height="20"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Z" stroke="currentColor" stroke-width="2"/><path d="m2 6 10 7 10-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4 class="footer-heading">Quick Links</h4>
+      <ul class="footer-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#technical-skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#certifications">Certifications</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4 class="footer-heading">Contact</h4>
+      <ul class="footer-contact">
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Z" stroke="currentColor" stroke-width="2"/><path d="m2 6 10 7 10-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <a href="mailto:sureshsureshpp100@gmail.com">sureshsureshpp100@gmail.com</a>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="9" r="2.5" stroke="currentColor" stroke-width="2"/></svg>
+          <span>Tirupattur, Tamil Nadu, India</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/><path d="M3 9h18M9 21V9" stroke="currentColor" stroke-width="2"/></svg>
+          <span>B.E CSE — 2026</span>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 <span>Suresh Portfolio</span>. All Rights Reserved.</p>
+    <p>Designed &amp; Built by <span>Suresh</span></p>
+  </div>
 </footer>
 
 <!-- PARTICLES -->
